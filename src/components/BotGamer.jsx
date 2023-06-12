@@ -1,23 +1,19 @@
 import React from 'react'
 
+
+
+
 const BotGamer = (turn, TURNS, board, setBoard, checkWinnerFrom, checkEndGame, setTurn, saveGameToStorage, setWinner) => {
-    
-    const [exit, setExit] = useState(true)
+
+    let exit = true;
 
     if (turn == TURNS.X) {
         while (exit) {
             const randomnumber = Math.floor((Math.random() * 9))
-            console.log(99);
-
             if (board[randomnumber] === null) {
-                console.log('jugo');
-                console.log('board', board);
-                console.log('turn', turn);
                 const newBoard = [...board]
                 newBoard[randomnumber] = turn
                 setBoard(newBoard)
-
-
 
                 const newWinner = checkWinnerFrom(newBoard)
                 if (newWinner) {
@@ -34,13 +30,12 @@ const BotGamer = (turn, TURNS, board, setBoard, checkWinnerFrom, checkEndGame, s
                     board: newBoard,
                     turn: newTurn
                 })
-                setExit(false)
+                exit = (false)
             }
 
             if (board.every((square) => square !== null)) {
-                setExit(false)
+                exit = (false)
             }
-
 
         }
     }

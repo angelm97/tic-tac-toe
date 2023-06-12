@@ -25,7 +25,7 @@ function App() {
   })
 
   useEffect(() => {
-    BotGamer(turn, TURNS, board, setBoard, checkWinnerFrom, checkEndGame, setTurn, saveGameToStorage, setWinner   )
+    BotGamer(turn, TURNS, board, setBoard, checkWinnerFrom, checkEndGame, setTurn, saveGameToStorage, setWinner)
   }, [turn])
 
 
