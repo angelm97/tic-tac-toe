@@ -7,13 +7,14 @@ import { checkWinnerFrom, checkEndGame } from './logic/board.js'
 import { WinnerModal } from './components/WinnerModal.jsx'
 import { saveGameToStorage, resetGameStorage } from './logic/storage/index.js'
 import BotGamer from './components/BotGamer.jsx'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
+
 
 
 
 function App() {
-
-  console.log(location.pathname);
+  const nav = useNavigate();
+  const [mode, setMode] = useState(location.pathname)
   const [board, setBoard] = useState(() => {
     const boardFromStorage = window.localStorage.getItem('board')
     if (boardFromStorage) return JSON.parse(boardFromStorage)
@@ -26,7 +27,7 @@ function App() {
   })
 
   useEffect(() => {
-    BotGamer(turn, TURNS, board, setBoard, checkWinnerFrom, checkEndGame, setTurn, saveGameToStorage, setWinner)
+    BotGamer(turn, TURNS, board, setBoard, checkWinnerFrom, checkEndGame, setTurn, saveGameToStorage, setWinner, mode)
   }, [turn])
 
 
@@ -43,14 +44,14 @@ function App() {
   const updateBoard = async (index) => {
 
     if (board[index] || winner) return
-   
+
 
     const newBoard = [...board]
     newBoard[index] = turn
     setBoard(newBoard)
 
-     const newTurn =  await turn === TURNS.X ? TURNS.O : TURNS.X
-     await setTurn(newTurn)
+    const newTurn = await turn === TURNS.X ? TURNS.O : TURNS.X
+    await setTurn(newTurn)
 
     saveGameToStorage({
       board: newBoard,
@@ -70,7 +71,10 @@ function App() {
   return (
     <main className='board'>
       <h1>Tic tac toe</h1>
-      <button onClick={resetGame}>Reset Game</button>
+      <div className="btns">
+        <button className='menuBtn' onClick={() => nav('/')}>Menu</button>
+        <button onClick={resetGame}>Reset Game</button>
+      </div>
       <section className='game'>
         {
           board.map((square, index) => {

@@ -3,11 +3,11 @@ import React from 'react'
 
 
 
-const BotGamer = (turn, TURNS, board, setBoard, checkWinnerFrom, checkEndGame, setTurn, saveGameToStorage, setWinner) => {
+const BotGamer = (turn, TURNS, board, setBoard, checkWinnerFrom, checkEndGame, setTurn, saveGameToStorage, setWinner, mode) => {
 
     let exit = true;
 
-    if (turn == TURNS.X) {
+    if (turn == TURNS.X && mode == '/bot') {
         while (exit) {
             const randomnumber = Math.floor((Math.random() * 9))
             if (board[randomnumber] === null) {
