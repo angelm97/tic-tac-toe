@@ -159,6 +159,14 @@ body {
   font-size: 25px;
 }
 
+.menu input{
+  background: transparent;
+  color: white;
+  border: white solid;
+  height: 40px;
+  font-size: 20px;
+}
+
 
 @media screen and (max-width: 480px) {
   .board h1{

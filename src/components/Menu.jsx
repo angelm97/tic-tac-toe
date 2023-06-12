@@ -18,7 +18,7 @@ const Menu = () => {
                 2 Players
             </button>
             <button onClick={() => {
-                nav('/')
+                nav('/multiplayer')
             }}>
                 Multiplayer
             </button>
