@@ -7,12 +7,13 @@ import { checkWinnerFrom, checkEndGame } from './logic/board.js'
 import { WinnerModal } from './components/WinnerModal.jsx'
 import { saveGameToStorage, resetGameStorage } from './logic/storage/index.js'
 import BotGamer from './components/BotGamer.jsx'
+import { useLocation } from 'react-router-dom'
 
 
 
 function App() {
 
-
+  console.log(location.pathname);
   const [board, setBoard] = useState(() => {
     const boardFromStorage = window.localStorage.getItem('board')
     if (boardFromStorage) return JSON.parse(boardFromStorage)
